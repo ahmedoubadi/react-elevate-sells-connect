@@ -6,6 +6,7 @@ import { API_RESPONSE, Assistant, CHAT, DISCUSSION } from 'types';
 import Send from '../../Assets/icons/send.svg';
 // @ts-ignore
 import BotIcon from '../../Assets/icons/ai-assistant.png';
+import { getLocalStorageItemWithExpiry, setLocalStorageItemWithExpiry } from 'utils';
 export interface ChatWindowProps {
   apiKey: string;
   assistantId: string;
@@ -51,6 +52,11 @@ export function ChatWindow({ apiKey, assistantId,baseURL }: ChatWindowProps) {
   }
 
   async function getAssistantInfo() {
+    const value = getLocalStorageItemWithExpiry('assistant');
+    if (value) {
+      setAssistant(value)
+      return
+    }
     try {
       const response: API_RESPONSE = await client.get(
         `${client.baseURL}/assistant/info/${assistantId}`
@@ -58,6 +64,7 @@ export function ChatWindow({ apiKey, assistantId,baseURL }: ChatWindowProps) {
 
       if (response && response.data) {
         setAssistant(response.data);
+        setLocalStorageItemWithExpiry('assistant', response.data, 20*60*1000); // 20 min
       }
     } catch (error) {
       console.log({ error });
