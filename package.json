@@ -1,6 +1,6 @@
 {
   "name": "react-elevate-sells-connect",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "keywords": ["assistant", "ai", "ai sales agent", "react"],
   "description": "Seamlessly integrate artificial intelligence into your React applications. Elevate user experiences, optimize workflows, and unlock new dimensions of intelligence with this powerful and developer-friendly AI integration library. ElevateLink React is designed for simplicity, versatility, and innovation, making it the perfect solution to enhance your projects with intelligent capabilities",
   "main": "dist/index.min.js",

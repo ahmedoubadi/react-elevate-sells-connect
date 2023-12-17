@@ -5,6 +5,7 @@
     z-index: 5000;
     height: 450px;
     width: 300px;
+    box-sizing: unset;
 }
 .buble_bg .msgbx, .win_body header:after, .win_body header{
     background-image: -ms-linear-gradient(90deg,#06c 0,#2182df 100%);
