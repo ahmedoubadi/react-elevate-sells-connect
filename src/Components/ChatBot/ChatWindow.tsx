@@ -27,6 +27,11 @@ export function ChatWindow({ apiKey, assistantId,baseURL }: ChatWindowProps) {
     baseURL,
   });
   async function createChat(assistant_id: string) {
+    const checkDiscussion = localStorage.getItem('discussion')
+    if (checkDiscussion) {
+      setDiscussion(JSON.parse(checkDiscussion))
+      return
+    }
     try {
       const response: API_RESPONSE = await client.post(
         `${client.baseURL}/chat/create-chat`,
@@ -37,6 +42,7 @@ export function ChatWindow({ apiKey, assistantId,baseURL }: ChatWindowProps) {
         }
       );
       if (response && response.data) {
+        localStorage.setItem("discussion",JSON.stringify(response.data))
         setDiscussion(response.data);
       }
     } catch (error) {
