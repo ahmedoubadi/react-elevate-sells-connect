@@ -70,8 +70,8 @@
     position: absolute;
     bottom: 0px;
     right: 0px;
-    width: 60px;
-    height: 60px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     color: white;
     padding: 28px;
@@ -244,7 +244,7 @@
 .chat_content {
     flex-grow: 1;
     position: relative;
-    height: calc(100% - 60px) !important;
+    height: calc(100% - 45px) !important;
     padding: 10px;
     overflow-x: hidden;
     overflow-y: auto;
@@ -264,7 +264,7 @@
 .msgbx {
     
     max-width: 310px;
-    width: 75%;
+    width: 90%;
     background-color: #fff;
     font-size: 13px;
     color: #222;
@@ -386,9 +386,9 @@ input[type="text" i] {
 .win_close_arrow::before {
     content: "X";
     display: inline-block;
-    -webkit-transform: rotate(268deg);
-    -moz-transform: rotate(268deg);
-    transform: rotate(268deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
     font-size: x-large;
 }
 
