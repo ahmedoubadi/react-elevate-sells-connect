@@ -6,11 +6,12 @@ import { API_RESPONSE, Assistant, CHAT, DISCUSSION } from 'types';
 import Send from '../../Assets/icons/send.svg';
 // @ts-ignore
 import BotIcon from '../../Assets/icons/ai-assistant.png';
-interface ChatBotProps {
+export interface ChatWindowProps {
   apiKey: string;
   assistantId: string;
+  baseURL:string
 }
-function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
+export function ChatWindow({ apiKey, assistantId,baseURL }: ChatWindowProps) {
   const bottomEl = useRef<HTMLDivElement>(null);
   const [isVisible, setVisible] = useState<boolean>(true);
   const [assistant, setAssistant] = useState<Assistant | null>(null);
@@ -23,12 +24,12 @@ function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
   const client = new Client({
     apiKey,
     assistantId,
-    baseURL: 'http://localhost:3200',
+    baseURL,
   });
   async function createChat(assistant_id: string) {
     try {
       const response: API_RESPONSE = await client.post(
-        `${client.baseURL}/v1/chat/create-chat`,
+        `${client.baseURL}/chat/create-chat`,
         {
           body: {
             input: { assistant_id },
@@ -46,9 +47,8 @@ function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
   async function getAssistantInfo() {
     try {
       const response: API_RESPONSE = await client.get(
-        `${client.baseURL}/v1/assistant/info/${assistantId}`
+        `${client.baseURL}/assistant/info/${assistantId}`
       );
-      console.log({ response });
 
       if (response && response.data) {
         setAssistant(response.data);
@@ -66,7 +66,7 @@ function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
     if (!discussion?.id) return;
     setAnswer('');
     setLoading(true);
-    const url = `${client.baseURL}/v1/chat/completions/${discussion?.id}`;
+    const url = `${client.baseURL}/chat/completions/${discussion?.id}`;
     let finalAnswer = '';
     try {
       const response = await fetch(url, {
@@ -94,7 +94,6 @@ function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
         }
 
         const chunkValue = decoder.decode(value);
-        console.log({ chunkValue, done });
         finalAnswer = finalAnswer + chunkValue;
         // Append the received chunk to the output element
         setAnswer((prev) => prev + chunkValue);
@@ -261,5 +260,3 @@ function ChatWindow({ apiKey, assistantId }: ChatBotProps) {
     </div>
   );
 }
-
-export default ChatWindow;

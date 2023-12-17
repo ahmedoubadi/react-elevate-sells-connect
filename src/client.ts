@@ -111,7 +111,7 @@ export class Client extends Core.APIClient {
       apiKey,
       assistantId,
       ...opts,
-      baseURL: opts.baseURL ?? `https://ai.fastlybot.com/v1`,
+      baseURL: opts.baseURL ?? `https://api.elevatesells.com/v1`,
     };
 
     super({

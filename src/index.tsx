@@ -1,12 +1,35 @@
-import React, { useEffect } from 'react';
-import ChatWindow from 'Components/ChatBot/ChatWindow';
+import {ChatWindowProps,ChatWindow} from 'Components/ChatBot/ChatWindow';
+import {ClientOptions, Client} from "./client"
+import * as Errors from './error';
+import {APIResponseProps,Assistant,DISCUSSION,CHAT} from './types';
 
-/**
- * ChatWindow Component Props
- */
-export interface ChatBotProps {
-  apiKey: string;
-  assistantId: string;
+
+export {
+  type ChatWindowProps,
+  ChatWindow
 }
-
-export default ChatWindow;
+export {
+  Client
+}
+export {
+  type ClientOptions,
+  type APIResponseProps,
+  type Assistant,
+  type DISCUSSION,
+  type CHAT
+}
+export const {
+  AIChatError,
+  APIError,
+  APIConnectionError,
+  APIConnectionTimeoutError,
+  APIUserAbortError,
+  NotFoundError,
+  ConflictError,
+  RateLimitError,
+  BadRequestError,
+  AuthenticationError,
+  InternalServerError,
+  PermissionDeniedError,
+  UnprocessableEntityError,
+} = Errors;

@@ -28,7 +28,7 @@ const client = new Client({
 ### Usage
 
 ```typescript
-import ChatWindow from 'react-elevate-sells-connect';
+import {ChatWindow} from 'react-elevate-sells-connect';
 
 <ChatWindow apiKey="your elevate sells api key"
             assistantId="your assistant id"  
